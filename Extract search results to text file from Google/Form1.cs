@@ -26,13 +26,11 @@ namespace Extract_search_results_to_text_file_from_Google
         {
             InitializeComponent();
 
-            browserView.Browser.LoadURL("http://www.google.com");
 
+            //Change address bar by event OnClick           
             DOMEventHandler domEvent = delegate (object sender1, DOMEventArgs e1)
             {
                 DOMEventType eventType = e1.Type;
-                //toolStripAddress.Text = browserView.Browser.URL.ToString();
-                //Console.Out.WriteLine("handleEvent = " + eventType);
             };
 
             browserView.Browser.FinishLoadingFrameEvent += delegate (object sender2, FinishLoadingEventArgs e2)
@@ -41,28 +39,26 @@ namespace Extract_search_results_to_text_file_from_Google
                 {
                     DOMDocument document = e2.Browser.GetDocument();
                     DOMElement documentElement = document.DocumentElement;
-                    documentElement.AddEventListener(DOMEventType.OnClick, domEvent, false);                   
+                    documentElement.AddEventListener(DOMEventType.OnClick, domEvent, false);
                 }
-                
+
                 try
                 {
+                    //toolStripDebug.Text = browserView.Browser.GetDocument().GetElementByClassName("cdr_frm").GetElementByTagName("input").GetAttribute("value").ToString();
                     toolStripAddress.Text = browserView.Browser.URL.ToString();
                     this.Text = browserView.Browser.Title;
                 }
-                catch{ }                
-            };          
+                catch { }
+            };
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            //browserView.Browser.LoadURL("http://www.google.com");
-
-            ComplexPageLoad();
-
+            browserView.Browser.LoadURL("http://www.google.com");
+            //ComplexPageLoad();
             this.Text = browserView.Browser.Title;
             toolStripAddress.Text = browserView.Browser.URL.ToString();
-            
+
         }
 
         private void toolStripAddress_KeyDown(object sender, KeyEventArgs e)
@@ -70,7 +66,6 @@ namespace Extract_search_results_to_text_file_from_Google
             if (e.KeyCode == Keys.Enter)
             {
                 ComplexPageLoad();
-                browserView.Browser.LoadURL(toolStripAddress.Text.ToString());
                 this.Text = browserView.Browser.Title;
                 toolStripAddress.Text = browserView.Browser.URL.ToString();
             }
@@ -112,7 +107,7 @@ namespace Extract_search_results_to_text_file_from_Google
             }
             catch
             {
-                MessageBox.Show("There is no info to parse", "Error!");
+                MessageBox.Show("There is nothing to parse", "Error!");
             }
 
 
@@ -164,7 +159,7 @@ namespace Extract_search_results_to_text_file_from_Google
                     {
                         break;
                     }
-                                                           
+
                     //Make string for add info to file
                     string textToFile = "# " + (i + 1) + Environment.NewLine +
                        "name =  " + text + Environment.NewLine +

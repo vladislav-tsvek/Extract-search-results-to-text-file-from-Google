@@ -45,7 +45,7 @@
             this.toolStripGoogleSearchToFile});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(859, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1062, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -58,7 +58,7 @@
             // toolStripAddress
             // 
             this.toolStripAddress.Name = "toolStripAddress";
-            this.toolStripAddress.Size = new System.Drawing.Size(500, 25);
+            this.toolStripAddress.Size = new System.Drawing.Size(600, 25);
             this.toolStripAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripAddress_KeyDown);
             // 
             // toolStripGoogleSearchToFile
@@ -76,14 +76,14 @@
             this.browserView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.browserView.Location = new System.Drawing.Point(0, 25);
             this.browserView.Name = "browserView";
-            this.browserView.Size = new System.Drawing.Size(859, 382);
-            this.browserView.TabIndex = 3; 
+            this.browserView.Size = new System.Drawing.Size(1062, 373);
+            this.browserView.TabIndex = 3;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(859, 407);
+            this.ClientSize = new System.Drawing.Size(1062, 398);
             this.Controls.Add(this.browserView);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
