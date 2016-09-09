@@ -77,7 +77,7 @@
             this.browserView.Location = new System.Drawing.Point(0, 25);
             this.browserView.Name = "browserView";
             this.browserView.Size = new System.Drawing.Size(859, 382);
-            this.browserView.TabIndex = 3;
+            this.browserView.TabIndex = 3; 
             // 
             // Form1
             // 

@@ -1,5 +1,6 @@
 ﻿using DotNetBrowser;
 using DotNetBrowser.DOM;
+using DotNetBrowser.DOM.Events;
 using DotNetBrowser.Events;
 using DotNetBrowser.WinForms;
 using DotNetBrowser.WPF;
@@ -24,17 +25,44 @@ namespace Extract_search_results_to_text_file_from_Google
         public Form1()
         {
             InitializeComponent();
+
+            browserView.Browser.LoadURL("http://www.google.com");
+
+            DOMEventHandler domEvent = delegate (object sender1, DOMEventArgs e1)
+            {
+                DOMEventType eventType = e1.Type;
+                //toolStripAddress.Text = browserView.Browser.URL.ToString();
+                //Console.Out.WriteLine("handleEvent = " + eventType);
+            };
+
+            browserView.Browser.FinishLoadingFrameEvent += delegate (object sender2, FinishLoadingEventArgs e2)
+            {
+                if (e2.IsMainFrame)
+                {
+                    DOMDocument document = e2.Browser.GetDocument();
+                    DOMElement documentElement = document.DocumentElement;
+                    documentElement.AddEventListener(DOMEventType.OnClick, domEvent, false);                   
+                }
+                
+                try
+                {
+                    toolStripAddress.Text = browserView.Browser.URL.ToString();
+                    this.Text = browserView.Browser.Title;
+                }
+                catch{ }                
+            };          
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            browserView.Browser.LoadURL("http://www.google.com");
+            //browserView.Browser.LoadURL("http://www.google.com");
 
             ComplexPageLoad();
 
             this.Text = browserView.Browser.Title;
             toolStripAddress.Text = browserView.Browser.URL.ToString();
+            
         }
 
         private void toolStripAddress_KeyDown(object sender, KeyEventArgs e)
